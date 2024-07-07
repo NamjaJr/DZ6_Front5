@@ -2,7 +2,7 @@ import {asyncGetUsers} from "./store/slice/usersSlice";
 import {useAppDispatch, useAppSelector,} from "./hooks/redux";
 import {useEffect, useState} from "react";
 import './App.css'
-import {User} from "./store/slice/userTypes";
+import {User} from "./store/types/userTypes.ts";
 
 const App = () => {
     const [showMoreInfo, setShowMoreInfo] = useState([])
@@ -22,7 +22,7 @@ const App = () => {
 
     if (loading) return (
         <div>
-            LOADING...
+            Загрузка
         </div>
     )
 
@@ -42,19 +42,13 @@ const App = () => {
                       <span>{user?.name ?? ''}</span>
                       <span>{user?.username ?? ''}</span>
                         {showMoreInfo?.[index] && <span>{user?.email ?? ''}</span>}
-                        <button onClick={() => handleShowMoreInfo(index)}>
-                            {!showMoreInfo?.[index]
-                                ? 'Показать подробности'
-                                : 'Скрыть'
-                            }
-                        </button>
+                        <button onClick={() => handleShowMoreInfo(index)}>{!showMoreInfo?.[index] ? 'Больше информации' : 'Скрыть'}</button>
                     </li>
                 ))}
               </ul>
           ) : (
-              <div>
-                pusto
-              </div>
+              <>
+              </>
           )
         }
       </>

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {User} from "./userTypes";
+import {User} from "../types/userTypes.ts";
 
 
 const name: string = 'usersSlice'
@@ -15,11 +15,11 @@ const initialState: State = {
     users: [
         {
             name: 'name',
-            username: 'surname'
+            username: 'userName'
         },
         {
             name: 'name 2',
-            username: 'surname 2'
+            username: 'userName2'
         }
     ],
     loading: false,
@@ -29,7 +29,7 @@ const initialState: State = {
 
 export const asyncGetUsers = createAsyncThunk(
     `${name}/asyncGetUsers`, async () => {
-        const response = await axios.get<User[]>(`https://jsonplaceholder.typicode.com/users?_limit=3`)
+        const response = await axios.get<User[]>(`https://jsonplaceholder.typicode.com/users`)
         return response.data
     }
 )
@@ -50,7 +50,7 @@ const usersSlice = createSlice({
             })
             .addCase(asyncGetUsers.rejected, (state, action) => {
                 state.loading = false
-                console.log('aciton', action.error.message)
+                console.log('acitons', action.error.message)
                 state.error = action.error.message
             })
     }

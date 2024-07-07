@@ -1,13 +1,5 @@
-
-.userList {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .userList li {
   padding: 10px;
-  background: orange;
   border-radius: 10px;
   width: 600px;
   display: flex;
